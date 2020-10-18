@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import { formatDatetime } from '../utils/helpers'
 import { getUser, getItems } from '../utils/api'
 import Credits from './Credits'
+import StoryList from './StoryList';
 
 export default class User extends React.Component {
     state = {
@@ -37,9 +38,8 @@ export default class User extends React.Component {
                         <p dangerouslySetInnerHTML={{ __html: user.about }}></p>
                     </div>)
                 }
-                {posts && posts.map((post) => (
-                    <Credits story={post} />
-                ))}
+
+                <StoryList stories={posts} />
             </div>
         )
     }
