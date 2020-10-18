@@ -1,11 +1,13 @@
-html, body, h1, p, #app {
+html, body, h1, h2, h3, p, ul, #app {
     margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
 }
 
 body {
     font-family: Segoe UI, Roboto, sans-serif;
+    color: gray;
 }
 
 ul {
@@ -16,8 +18,21 @@ li {
     list-style-type: none;
 }
 
-h1 {
-    font-size: 26px;
+.title {
+    color: black;
+}
+
+.first-title {
+    color: #eeeeee;
+    font-size: 40px;
+}
+
+.second-title {
+    font-size: 30px;
+}
+
+.third-title {
+    font-size: 22px;
 }
 
 .container {
@@ -32,12 +47,18 @@ h1 {
 
 .space-between {
     justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    padding: 5px 0
 }
 
 .nav-link {
+    color: black;
     font-weight: bold;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
 }
 
@@ -54,10 +75,38 @@ nav a.active {
     border: none;
 }
 
-li .comment {
+.comment {
     margin: 10px 0;
     padding: 10px 10px;
     border: none;
     border-radius: 3px;
     background: #eee;
+}
+
+.credits a {
+    color: black
+}
+
+.story-item {
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.story-link {
+    font-weight: bold;
+    color: rgb(187, 46, 31);
+    text-decoration: none;
+}
+
+section {
+    padding: 10px 0;
+}
+
+.item-content {
+    color: black;
+    margin: 10px 0;
+}
+
+.item-content p {
+    margin: 1em 0;
 }

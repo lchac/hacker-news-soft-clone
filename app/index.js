@@ -12,7 +12,7 @@ class HackerNews extends React.Component {
         return (
             <div className='container'>
                 <Router>
-                    <h1>Hacker News</h1>
+                    <h1 className='title first-title'>Hacker News</h1>
                     <Nav />
                     <Route exact path={['/', '/top']} render={() => <Feed selectedFeed='top' />} />
                     <Route path='/new' render={() => <Feed selectedFeed='new' />} />

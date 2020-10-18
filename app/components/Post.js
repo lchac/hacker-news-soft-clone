@@ -30,17 +30,27 @@ export default class Post extends React.Component {
         const { story, comments } = this.state
 
         return (
-            <ul className='comments'>
-                {story && comments && comments.map((comment) => (
-                    <li key={comment.id}>
-                        <div className='comment'>
-                            <Credits story={story} />
-                            <div dangerouslySetInnerHTML={{ __html: comment.text }}></div>
-                        </div>
-                    </li>
-                ))
+            <React.Fragment>
+                {story &&
+                    (<section>
+                        <h2 className='title second-title'>
+                            <a className='story-link' href={story.url}>{story.title}</a>
+                        </h2>
+                        <Credits story={story} />
+                    </section>)
                 }
-            </ul>
+                <ul className='comments'>
+                    {story && comments && comments.map((comment) => (
+                        <li key={comment.id}>
+                            <div className='comment'>
+                                <Credits story={comment} />
+                                <div className='item-content' dangerouslySetInnerHTML={{ __html: comment.text }}></div>
+                            </div>
+                        </li>
+                    ))
+                    }
+                </ul>
+            </React.Fragment>
         )
     }
 }

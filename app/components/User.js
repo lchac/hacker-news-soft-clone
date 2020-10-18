@@ -2,7 +2,6 @@ import React from 'react';
 import queryString from 'query-string'
 import { formatDatetime } from '../utils/helpers'
 import { getUser, getItems } from '../utils/api'
-import Credits from './Credits'
 import StoryList from './StoryList';
 
 export default class User extends React.Component {
@@ -30,17 +29,19 @@ export default class User extends React.Component {
     render() {
         const { user, posts } = this.state
         return (
-            <div>
+            <React.Fragment>
                 {user &&
-                    (<div>
-                        <h2>{user.id}</h2>
-                        <p>joined {formatDatetime(user.created)} has {user.karma} karma</p>
-                        <p dangerouslySetInnerHTML={{ __html: user.about }}></p>
-                    </div>)
+                    (<section>
+                        <h2 className='title second-title'>{user.id}</h2>
+                        <p>joined <b>{formatDatetime(user.created)}</b> has <b>{user.karma}</b> karma</p>
+                        <div className='item-content' dangerouslySetInnerHTML={{ __html: user.about }}></div>
+                    </section>)
                 }
-
-                <StoryList stories={posts} />
-            </div>
+                <section>
+                    <h3 className='title third-title'>Posts</h3>
+                    <StoryList stories={posts} />
+                </section>
+            </React.Fragment>
         )
     }
 }

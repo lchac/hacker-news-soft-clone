@@ -3,15 +3,15 @@ import Credits from './Credits'
 
 export default function StoryList({ stories }) {
     return (
-        <div className='story-item'>
-            <ul>
-                {stories && stories.map((story) => (
-                    <li key={story.id}>
-                        <a href={story.url}>{story.title}</a><br />
+        <ul>
+            {stories && stories.map((story) => (
+                <li key={story.id}>
+                    <div className='story-item'>
+                        <a className='story-link' href={story.url}>{story.title}</a><br />
                         <Credits story={story} />
-                    </li>
-                ))}
-            </ul>
-        </div>
+                    </div>
+                </li>
+            ))}
+        </ul>
     )
 }
