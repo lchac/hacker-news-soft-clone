@@ -1,0 +1,63 @@
+html, body, h1, p, #app {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: Segoe UI, Roboto, sans-serif;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.nav-link {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav a.active {
+    color: rgb(187, 46, 31)
+}
+
+.btn {
+    font-size: 30px;
+}
+
+.btn-clear {
+    background: transparent;
+    border: none;
+}
+
+li .comment {
+    margin: 10px 0;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 3px;
+    background: #eee;
+}
