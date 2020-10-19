@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import Feed from './components/Feed'
 import Post from './components/Post'
 import User from './components/User'
+import Loading from './components/Loading'
 
 class HackerNews extends React.Component {
     render() {
@@ -14,10 +15,12 @@ class HackerNews extends React.Component {
                 <Router>
                     <h1 className='title first-title'>Hacker News</h1>
                     <Nav />
-                    <Route exact path={['/', '/top']} render={() => <Feed selectedFeed='top' />} />
-                    <Route path='/new' render={() => <Feed selectedFeed='new' />} />
-                    <Route path='/post' component={Post} />
-                    <Route path='/user' component={User} />
+                    <React.Suspense fallback={<Loading />}>
+                        <Route exact path={['/', '/top']} render={() => <Feed />} />
+                        <Route path='/new' render={() => <Feed selectedFeed='new' />} />
+                        <Route path='/post' component={Post} />
+                        <Route path='/user' component={User} />
+                    </React.Suspense>
                 </Router>
             </div>
         )

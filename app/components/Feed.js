@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { getTopStories, getNewStories } from '../utils/api'
+import Loading from './Loading'
 import StoryList from './StoryList';
 
 export default class Feed extends React.Component {
     state = {
+        loading: true,
         stories: null
     }
 
@@ -13,11 +15,12 @@ export default class Feed extends React.Component {
     }
 
     updateFeed = (selectedFeed) => {
-        const quantity = 5
+        const quantity = 50
         if (selectedFeed === 'top') {
             getTopStories(quantity)
                 .then((stories) => {
                     this.setState({
+                        loading: false,
                         stories: stories.filter((story) => story)
                     })
                 })
@@ -25,6 +28,7 @@ export default class Feed extends React.Component {
             getNewStories(quantity)
                 .then((stories) => {
                     this.setState({
+                        loading: false,
                         stories: stories.filter((story) => story)
                     })
                 })
@@ -32,13 +36,20 @@ export default class Feed extends React.Component {
     }
 
     render() {
-        const { stories } = this.state
+        const { loading, stories } = this.state
         return (
-            <StoryList stories={stories} />
+            <React.Fragment>
+                {loading && <Loading />}
+                {!loading && <StoryList stories={stories} />}
+            </React.Fragment>
         )
     }
 }
 
 Feed.propTypes = {
     selectedFeed: PropTypes.string.isRequired
+}
+
+Feed.defaultProps = {
+    selectedFeed: 'top'
 }
