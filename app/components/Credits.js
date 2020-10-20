@@ -6,14 +6,14 @@ export default function Credits({ story }) {
     return (
         <React.Fragment>
             {(story.descendants || story.descendants === 0) &&
-                <p className='credits'>
+                <span className='credits'>
                     by <a href={`/user?id=${story.by}`}>{story.by}</a> on {formatDatetime(story.time)} with <a href={`/post?id=${story.id}`}>{story.descendants}</a> comments.
-                </p>
+                </span>
             }
             {!story.descendants && story.descendants !== 0 &&
-                <p className='credits'>
+                <span className='credits'>
                     by <a href={`/user?id=${story.by}`}>{story.by}</a> on {formatDatetime(story.time)}
-                </p>
+                </span>
             }
         </React.Fragment>
     )

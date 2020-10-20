@@ -7,7 +7,6 @@ html, body, h1, h2, h3, p, ul, #app {
 
 body {
     font-family: Segoe UI, Roboto, sans-serif;
-    color: gray;
 }
 
 ul {
@@ -18,12 +17,16 @@ li {
     list-style-type: none;
 }
 
+p {
+    color: 
+}
+
 .title {
     color: black;
 }
 
 .first-title {
-    color: #eeeeee;
+    color: rgba(128, 128, 128, 0.15);
     font-size: 40px;
 }
 
@@ -37,7 +40,8 @@ li {
 
 .container {
     width: 80%;
-    margin: 20px auto;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 .row {
@@ -80,9 +84,12 @@ nav a.active {
     padding: 10px 10px;
     border: none;
     border-radius: 3px;
-    background: #eee;
+    background: rgba(128, 128, 128, 0.15);
 }
 
+.credits {
+    color: gray;
+}
 .credits a {
     color: black
 }
@@ -109,4 +116,22 @@ section {
 
 .item-content p {
     margin: 1em 0;
+}
+
+.dark {
+    background-color: #1c2022;
+    color: #DADADA;
+    min-height: 100%;
+}
+
+.dark .title,
+.dark .nav-link,
+.dark .story-link,
+.dark .item-content,
+.dark .item-content a {
+    color: rgb(203, 203, 203);
+}
+
+.dark .credits a {
+    color: #DADADA
 }
