@@ -25,7 +25,7 @@ class HackerNews extends React.Component {
                 <div className={this.state.theme}>
                     <div className='container'>
                         <Router>
-                            <h1 className='title first-title'>Hacker News</h1>
+                            <h1 className='first-title'>Hacker News</h1>
                             <Nav />
                             <React.Suspense fallback={<Loading />}>
                                 <Route exact path={['/', '/top']} render={() => <Feed />} />

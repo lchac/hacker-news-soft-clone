@@ -53,6 +53,7 @@ export default class User extends React.Component {
                         <StoryList stories={posts} />
                     </section>
                 }
+                {!loadingPosts && posts && posts.length === 0 && <p className='center-text'>This user hasn't posted yet</p>}
             </React.Fragment>
         )
     }
