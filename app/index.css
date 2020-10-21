@@ -1,0 +1,142 @@
+html, body, h1, h2, h3, p, ul, #app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: Segoe UI, Roboto, sans-serif;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+p {
+    color: gray;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.title {
+    color: black;
+}
+
+.first-title {
+    color: rgba(128, 128, 128, 0.15);
+    font-size: 40px;
+}
+
+.second-title {
+    font-size: 30px;
+}
+
+.third-title {
+    font-size: 22px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    padding: 5px 0
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+nav a.active,
+.dark nav a.active {
+    color: rgb(187, 46, 31)
+}
+
+.btn {
+    font-size: 30px;
+}
+
+.btn-clear {
+    background: transparent;
+    border: none;
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(128, 128, 128, 0.15);
+}
+
+.credits {
+    color: gray;
+}
+.credits a {
+    color: black
+}
+
+.story-item {
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.story-link {
+    font-weight: bold;
+    color: rgb(187, 46, 31);
+    text-decoration: none;
+}
+
+section {
+    padding: 10px 0;
+}
+
+.item-content {
+    color: black;
+    margin: 10px 0;
+}
+
+.item-content p {
+    margin: 1em 0;
+}
+
+.dark {
+    background-color: #1c2022;
+    color: #DADADA;
+    min-height: 100%;
+}
+
+.dark .title,
+.dark .nav-link,
+.dark .story-link,
+.dark .item-content,
+.dark .item-content a {
+    color: rgb(203, 203, 203);
+}
+
+.dark .credits a {
+    color: #DADADA
+}
