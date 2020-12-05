@@ -5,7 +5,6 @@ import Loading from './Loading'
 import StoryList from './StoryList';
 
 function storiesReducer(state, action) {
-    console.log(state)
     if (action.type == 'success') {
         return {
             loading: false,
