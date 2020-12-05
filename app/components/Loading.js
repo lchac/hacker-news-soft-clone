@@ -1,39 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-export default class Loading extends React.Component {
-    state = {
-        content: this.props.message
-    }
+export default function Loading({ message = 'Loading' }) {
+    const [content, setContent] = React.useState(message)
 
-    componentDidMount(prevProps, prevState) {
-        const { message } = this.props
-
-        this.interval = setInterval(() => {
-            this.state.content === message + '...'
-                ? this.setState({ content: message })
-                : this.setState(prevState => {
-                    return { content: prevState.content + '.' }
-                })
+    React.useEffect(() => {
+        const id = window.setInterval(() => {
+            setContent((content) => {
+                return content === `${message}...`
+                    ? message
+                    : `${content}.`
+            })
         }, 300)
-    }
 
-    componentWillUnmount() {
-        clearInterval(this.interval)
-    }
+        return () => window.clearInterval(id)
+    }, [message])
 
-    render() {
-        return (
-            <p className='title second-title'>{this.state.content}</p>
-        )
-    }
+    return (
+        <p className='title second-title'>{content}</p>
+    )
 }
-
 
 Loading.propTypes = {
-    message: PropTypes.string.isRequired
-}
-
-Loading.defaultProps = {
-    message: 'Loading'
+    message: PropTypes.string
 }
