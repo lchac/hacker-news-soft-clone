@@ -42,36 +42,42 @@ export default function User({ location }) {
             getUser(id)
                 .then((user) => {
                     dispatch({ type: 'userSuccess', user })
-
-                    getItems(user.submitted)
-                        .then((items) => {
-                            dispatch({
-                                type: 'itemsSuccess',
-                                posts: items.filter((item) => item && item.type === 'story' && item.deleted !== true)
+                    if (user) {
+                        getItems(user.submitted)
+                            .then((items) => {
+                                dispatch({
+                                    type: 'itemsSuccess',
+                                    posts: items.filter((item) => item && item.type === 'story' && item.deleted !== true)
+                                })
                             })
-                        })
+                    } else {
+                        dispatch({ type: 'error', error: 'No user found' })
+                    }
                 })
         }
     }, [id])
 
+    const { loadingUser, loadingPosts, user, posts, error } = state
+
     return (
         <React.Fragment>
-            {state.loadingUser && <Loading message='Fetching User' />}
-            {!state.loadingUser &&
+            {error && <b>{error}</b>}
+            {loadingUser && <Loading message='Fetching User' />}
+            {!loadingUser && user &&
                 (<section>
-                    <h2 className='title second-title'>{state.user.id}</h2>
-                    <p>joined <b>{formatDatetime(state.user.created)}</b> has <b>{state.user.karma}</b> karma</p>
-                    <div className='item-content' dangerouslySetInnerHTML={{ __html: state.user.about }}></div>
+                    <h2 className='title second-title'>{user.id}</h2>
+                    <p>joined <b>{formatDatetime(user.created)}</b> has <b>{user.karma}</b> karma</p>
+                    <div className='item-content' dangerouslySetInnerHTML={{ __html: user.about }}></div>
                 </section>)
             }
-            {state.loadingPosts && <Loading message='Fetching repos' />}
-            {!state.loadingPosts &&
+            {loadingPosts && <Loading message='Fetching repos' />}
+            {!loadingPosts && posts &&
                 <section>
                     <h3 className='title third-title'>Posts</h3>
-                    <StoryList stories={state.posts} />
+                    <StoryList stories={posts} />
                 </section>
             }
-            {!state.loadingPosts && state.posts && state.posts.length === 0 && <p className='center-text'>This user hasn't posted yet</p>}
+            {!loadingPosts && posts && posts.length === 0 && <p className='center-text'>This user hasn't posted yet</p>}
         </React.Fragment>
     )
 
