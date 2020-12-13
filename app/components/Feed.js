@@ -4,52 +4,51 @@ import { getTopStories, getNewStories } from '../utils/api'
 import Loading from './Loading'
 import StoryList from './StoryList';
 
-export default class Feed extends React.Component {
-    state = {
-        loading: true,
-        stories: null
+function storiesReducer(state, action) {
+    if (action.type == 'success') {
+        return {
+            loading: false,
+            stories: action.stories.filter((story) => story)
+        }
+    } if (action.type == 'error') {
+        return {
+            loading: false,
+            stories: null,
+            error: action.error
+        }
+    } else {
+        throw new Error('Action type is not supported')
     }
+}
 
-    componentDidMount() {
-        this.updateFeed(this.props.selectedFeed)
-    }
+export default function Feed({ selectedFeed = 'top' }) {
+    const [state, dispatch] = React.useReducer(
+        storiesReducer,
+        { loading: true, stories: null }
+    )
 
-    updateFeed = (selectedFeed) => {
+    React.useEffect(() => {
         const quantity = 50
         if (selectedFeed === 'top') {
             getTopStories(quantity)
-                .then((stories) => {
-                    this.setState({
-                        loading: false,
-                        stories: stories.filter((story) => story)
-                    })
-                })
+                .then((stories) => dispatch({ type: 'success', stories }))
+                .catch((error) => dispatch({ type: 'error', error }))
         } else if (selectedFeed === 'new') {
             getNewStories(quantity)
-                .then((stories) => {
-                    this.setState({
-                        loading: false,
-                        stories: stories.filter((story) => story)
-                    })
-                })
+                .then((stories) => dispatch({ type: 'success', stories }))
+                .catch((error) => dispatch({ type: 'error', error }))
         }
-    }
 
-    render() {
-        const { loading, stories } = this.state
-        return (
-            <React.Fragment>
-                {loading && <Loading />}
-                {!loading && <StoryList stories={stories} />}
-            </React.Fragment>
-        )
-    }
+    }, [selectedFeed])
+
+    return (
+        <React.Fragment>
+            {state.loading && <Loading />}
+            {!state.loading && <StoryList stories={state.stories} />}
+        </React.Fragment>
+    )
 }
 
 Feed.propTypes = {
-    selectedFeed: PropTypes.string.isRequired
-}
-
-Feed.defaultProps = {
-    selectedFeed: 'top'
+    selectedFeed: PropTypes.string
 }
