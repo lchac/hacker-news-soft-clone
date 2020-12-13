@@ -4,6 +4,7 @@ import { formatDatetime } from '../utils/helpers'
 import { getUser, getItems } from '../utils/api'
 import StoryList from './StoryList'
 import Loading from './Loading'
+import purify from 'dompurify'
 
 function userReducer(state, action) {
     if (action.type === 'userSuccess') {
@@ -67,7 +68,7 @@ export default function User({ location }) {
                 (<section>
                     <h2 className='title second-title'>{user.id}</h2>
                     <p>joined <b>{formatDatetime(user.created)}</b> has <b>{user.karma}</b> karma</p>
-                    <div className='item-content' dangerouslySetInnerHTML={{ __html: user.about }}></div>
+                    <div className='item-content' dangerouslySetInnerHTML={{ __html: purify.sanitize(user.about) }}></div>
                 </section>)
             }
             {loadingPosts && <Loading message='Fetching repos' />}

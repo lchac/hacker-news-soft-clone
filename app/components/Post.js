@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import { getItem, getItems } from '../utils/api'
 import Credits from './Credits'
 import Loading from './Loading'
+import purify from 'dompurify'
 
 function postReducer(state, action) {
     if (action.type === 'postSuccess') {
@@ -77,7 +78,7 @@ export default function Post({ location }) {
                         <li key={comment.id}>
                             <div className='comment'>
                                 <Credits story={comment} />
-                                <div className='item-content' dangerouslySetInnerHTML={{ __html: comment.text }}></div>
+                                <div className='item-content' dangerouslySetInnerHTML={{ __html: purify.sanitize(comment.text) }}></div>
                             </div>
                         </li>
                     ))
